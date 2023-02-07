@@ -1,3 +1,7 @@
-import streamlit
+import streamlit as stl
 
-streamlit.title('My parents new healthy diner')
+stl.title('My parents new healthy diner')
+stl.header('Breakfast menu')
+stl.text('Omega 3 & Blueberry oatmeal')
+stl.text('Kale, spinach & rocket smothie')
+stl.text('Hard-boiled free-range egg')
