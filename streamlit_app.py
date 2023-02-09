@@ -25,8 +25,8 @@ stl.dataframe(fruits_to_show)
 
 stl.header("Fruityvice Fruit Advice!")
 
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-stl.text(fruityvice_response.json())
+fruit = "kiwi"
+fruityvice_response = requests.get(f"https://fruityvice.com/api/fruit/{fruit}")
 
 # normalize json response
 fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
