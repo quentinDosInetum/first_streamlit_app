@@ -41,5 +41,5 @@ fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
 # display response as table
 stl.dataframe(fruityvice_normalized)
 
-stl.text("The fruit load list contains")
-stl.text(my_data_row)
+stl.header("The fruit load list contains")
+stl.dataframe(my_data_row)
