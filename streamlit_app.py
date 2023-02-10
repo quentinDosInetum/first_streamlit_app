@@ -49,8 +49,6 @@ except URLError as e:
   
   stl.error()
 
-
-
 stl.header("The fruit load list contains")
 
 def get_fruit_load_list():
@@ -65,8 +63,16 @@ if stl.button('Get fruit load list'):
   
 stl.stop()
 
+def insert_row_snowflake(new_fruit):
+  with my_cnx.cursor() as my_cur:
+    my_cur.execute("insert into pc_rivery_db.public.fruit_load_list values ('From streamlit')")
+    return f'Thanks for adding {new_fruit}'
+
 # allow user to add afruit to the list
 add_my_fruit = stl.text_input('What fruit would you like to add ?')
-stl.write('Thank you for adding ', add_my_fruit)
 
-my_cur.execute("insert into pc_rivery_db.public.fruit_load_list values ('From streamlit')")
+if stl.button('Add a fruit to the list'):
+  stl.write('Thank you for adding ', add_my_fruit)
+  my_cnx = snowflake.connector.connect(**stl.secrets["snowflake"])
+  back_from_function = insert_row_snowflake(add_my_fruit)
+  stl.text(back_from_function)
