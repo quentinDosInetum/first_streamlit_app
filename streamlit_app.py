@@ -43,3 +43,8 @@ stl.dataframe(fruityvice_normalized)
 
 stl.header("The fruit load list contains")
 stl.dataframe(my_data_rows)
+
+# allow user to add afruitto the list
+
+add_my_fruit = stl.text_input('What fruit would you like to add ?')
+stl.write('Thank you for adding ', add_my_fruit)
