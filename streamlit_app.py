@@ -2,6 +2,7 @@ import streamlit as stl
 import pandas as pd
 import requests
 import snowflake.connector
+from urllib.error import URLError
 
 my_cnx = snowflake.connector.connect(**stl.secrets["snowflake"])
 my_cur = my_cnx.cursor()
@@ -40,6 +41,8 @@ fruityvice_response = requests.get(f"https://fruityvice.com/api/fruit/{fruit_cho
 fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
 # display response as table
 stl.dataframe(fruityvice_normalized)
+
+stl.stop()
 
 stl.header("The fruit load list contains")
 stl.dataframe(my_data_rows)
