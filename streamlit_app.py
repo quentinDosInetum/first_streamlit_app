@@ -49,7 +49,7 @@ except URLError as e:
   
   stl.error()
 
-stl.stop()
+
 
 stl.header("The fruit load list contains")
 
@@ -62,9 +62,10 @@ if stl.button('Get fruit load list'):
   my_cnx = snowflake.connector.connect(**stl.secrets["snowflake"])
   my_data_rows = get_fruit_load_list()
   stl.dataframe(my_data_rows)
+  
+stl.stop()
 
-# allow user to add afruitto the list
-
+# allow user to add afruit to the list
 add_my_fruit = stl.text_input('What fruit would you like to add ?')
 stl.write('Thank you for adding ', add_my_fruit)
 
