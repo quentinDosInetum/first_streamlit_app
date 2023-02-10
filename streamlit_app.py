@@ -63,7 +63,7 @@ if stl.button('Get fruit load list'):
 
 def insert_row_snowflake(new_fruit):
   with my_cnx.cursor() as my_cur:
-    my_cur.execute("insert into pc_rivery_db.public.fruit_load_list values ('From streamlit')")
+    my_cur.execute(f"insert into pc_rivery_db.public.fruit_load_list values ('{new_fruit}')")
     return f'Thanks for adding {new_fruit}'
 
 # allow user to add afruit to the list
