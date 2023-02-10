@@ -60,8 +60,6 @@ if stl.button('Get fruit load list'):
   my_cnx = snowflake.connector.connect(**stl.secrets["snowflake"])
   my_data_rows = get_fruit_load_list()
   stl.dataframe(my_data_rows)
-  
-stl.stop()
 
 def insert_row_snowflake(new_fruit):
   with my_cnx.cursor() as my_cur:
