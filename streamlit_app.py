@@ -4,11 +4,6 @@ import requests
 import snowflake.connector
 from urllib.error import URLError
 
-my_cnx = snowflake.connector.connect(**stl.secrets["snowflake"])
-my_cur = my_cnx.cursor()
-my_cur.execute("SELECT * from fruit_load_list")
-my_data_rows = my_cur.fetchall()
-
 my_fruit_list = pd.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt")
 my_fruit_list = my_fruit_list.set_index('Fruit')
 
@@ -57,7 +52,16 @@ except URLError as e:
 stl.stop()
 
 stl.header("The fruit load list contains")
-stl.dataframe(my_data_rows)
+
+def get_fruit_load_list():
+  with my_cnx.cursor() as my_cur:
+    my_cur.execute("SELECT * from fruit_load_list")
+    return my_cur.fetchall()
+  
+if stl.button('Get fruit load list'):
+  my_cnx = snowflake.connector.connect(**stl.secrets["snowflake"])
+  my_data_rows = get_fruit_load_list()
+  stl.dataframe(my_data_rows)
 
 # allow user to add afruitto the list
 
